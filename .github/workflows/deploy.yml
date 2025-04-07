@@ -29,6 +29,11 @@ jobs:
         docker tag ror-app:latest ${{ steps.login-ecr.outputs.registry }}/ror-app:latest
         docker push ${{ steps.login-ecr.outputs.registry }}/ror-app:latest
 
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.6.6
+
     - name: Deploy with Terraform
       working-directory: terraform
       run: |
