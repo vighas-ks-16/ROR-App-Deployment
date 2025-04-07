@@ -22,6 +22,27 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_attach" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
+resource "aws_iam_role_policy" "ecs_s3_access" {
+  name = "ecs-s3-access"
+  role = aws_iam_role.ecs_task_execution_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Effect = "Allow",
+      Action = [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      Resource = [
+        aws_s3_bucket.ror_s3.arn,
+        "${aws_s3_bucket.ror_s3.arn}/*"
+      ]
+    }]
+  })
+}
+
 resource "aws_ecs_task_definition" "ror_task" {
   family                   = "ror-task"
   network_mode             = "awsvpc"
