@@ -35,6 +35,11 @@ All services (except the Load Balancer) are deployed to private subnets for secu
 
 ---
 
+## Architecture Diagram
+
+![image](https://github.com/user-attachments/assets/f5a4bb7a-43e7-4f79-839a-dd1540886d7e)
+
+
 ## 🔐 GitHub Secrets Setup
 
 In your GitHub repo, go to **Settings > Secrets and Variables > Actions**, and add:
