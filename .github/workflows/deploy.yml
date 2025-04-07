@@ -25,12 +25,12 @@ jobs:
 
     - name: Build and push Docker image to ECR
       run: |
-        docker build -t ror-app ./docker/app
+        docker build -t ror-app .
         docker tag ror-app:latest ${{ steps.login-ecr.outputs.registry }}/ror-app:latest
         docker push ${{ steps.login-ecr.outputs.registry }}/ror-app:latest
 
     - name: Deploy with Terraform
+      working-directory: terraform
       run: |
-        cd terraform
         terraform init
         terraform apply -auto-approve
