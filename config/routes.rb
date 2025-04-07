@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  # Health check route for ALB
+  get "/healthcheck", to: proc { [200, {}, ["OK"]] }
+
   resources :posts
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   root "posts#index"
