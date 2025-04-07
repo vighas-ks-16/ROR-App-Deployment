@@ -64,3 +64,49 @@ docker build -t ror-app .
 docker tag ror-app:latest <account-id>.dkr.ecr.us-east-1.amazonaws.com/ror-app:latest
 
 docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/ror-app:latest
+
+```
+
+## Steps to Deploy Manually 
+
+Configure Terraform Variables
+
+```
+rds_db_name  = "your_db_name"
+rds_username = "your_db_user"
+rds_password = "your_secure_password"
+```
+
+These values will be injected into the ECS container as ENV variables.
+
+## Deploy Infrastructure with Terraform
+```
+cd terraform
+
+# Initialize Terraform
+terraform init
+
+# Review what will be created
+terraform plan
+
+# Apply and provision all resources
+terraform apply -auto-approve
+```
+
+This will:
+
+Create VPC, subnets, security groups
+
+Create ECS Fargate cluster, task definition, and service
+
+Deploy RDS PostgreSQL and S3 bucket
+
+Configure ALB and route traffic to ECS
+
+## Access the Application
+
+```
+Outputs:
+
+alb_dns_name = ror-app-alb-xxxxxx.us-east-1.elb.amazonaws.com
+```
