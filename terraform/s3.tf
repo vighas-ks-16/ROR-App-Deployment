@@ -10,3 +10,9 @@ resource "aws_s3_bucket" "ror_s3" {
     Name = "ror-app-bucket"
   }
 }
+
+
+
+
+
+

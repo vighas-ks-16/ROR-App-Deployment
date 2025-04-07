@@ -93,3 +93,26 @@ resource "aws_ecs_service" "ror_service" {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
