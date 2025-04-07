@@ -75,3 +75,8 @@ resource "aws_security_group" "rds_sg" {
     Name = "RDS SG"
   }
 }
+
+
+
+
+
